@@ -4,6 +4,7 @@ use rand::{thread_rng, Rng};
 use std::{string::String, vec::Vec};
 use texture_synthesis as ts;
 
+#[allow(unused_must_use)]
 fn main() {
     let mut inputs: Vec<String> = Vec::new();
     for entry in glob("inputs/*").expect("Failed to read glob pattern") {
@@ -38,5 +39,5 @@ fn helper(img_1: &str, img_2: &str, count: i32) -> Result<(), ts::Error> {
 
     let output = texsynth.run(None);
     output.save(format!("outputs/{}.png", count))?;
-    output.save_debug("debug/")
+    output.save_debug(format!("debug/{}/", count))
 }
